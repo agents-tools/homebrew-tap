@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/agents-tools/cli">
-    <img src="https://raw.githubusercontent.com/agents-tools/.github/301c132794cbee950bfca6ba83987975d1ea6917/profile/assets/icon.png" width="160" alt="agents logo">
+    <img src="https://raw.githubusercontent.com/agents-tools/.github/12f1ad84bd9536d6311f7c3e2c92feef54e34a9e/profile/assets/icon.png" width="160" alt="agents logo">
   </a>
 </p>
 
@@ -64,8 +64,7 @@ test merge commit. Deleted formulae are not installed.
 The required contexts are `policy / policy` and `homebrew`. Source policy calls
 the pinned family workflow; `homebrew` runs the checks above on macOS. Both
 workflows run on branch pushes and pull requests. Title edits rerun only source
-policy. CI also supports manual dispatch. The source-policy manual trigger is
-declared, but the pinned shared policy accepts only push and pull-request events.
+policy. Both workflows also support manual dispatch.
 
 For workflow changes, run these checks as well:
 

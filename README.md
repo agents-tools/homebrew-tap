@@ -24,8 +24,9 @@
 ## Overview
 
 This is the Homebrew tap for [agents](https://github.com/agents-tools/cli),
-a package manager for agent skills and instructions. Formulae track the
-upstream CLI releases; the tap has no independent version or release tags.
+which installs, locks and updates agent skills and instructions. Formulae
+track the upstream CLI releases; the tap has no independent version or
+release tags.
 
 ## Install
 

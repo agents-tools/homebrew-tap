@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ $# != 0 && $# != 2 ]]; then
+  echo "Usage: bash Scripts/check [BASE HEAD]" >&2
+  exit 2
+fi
+
+cd "$(dirname "$0")/.."
+shopt -s nullglob
+formulae=(Formula/*.rb)
+
+if [[ ${#formulae[@]} == 0 ]]; then
+  echo "::notice::No Formula/*.rb files yet; the first agents release adds Formula/agents.rb."
+  exit 0
+fi
+
+for formula in "${formulae[@]}"; do
+  name="${formula##*/}"
+  reference="agents-tools/tap/${name%.rb}"
+  brew style "$reference"
+  brew audit --strict "$reference"
+done
+
+if [[ $# == 2 ]]; then
+  changed_formulae="$(git diff --name-only --no-renames --diff-filter=ACMRT "$1...$2" -- 'Formula/*.rb')"
+  while IFS= read -r formula; do
+    [[ -n "$formula" && -f "$formula" ]] || continue
+    name="${formula##*/}"
+    reference="agents-tools/tap/${name%.rb}"
+    brew install --build-from-source "$reference"
+    brew test "$reference"
+  done <<< "$changed_formulae"
+fi

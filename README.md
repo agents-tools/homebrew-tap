@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="#overview">Overview</a> ·
+  <a href="#quick-look">Quick look</a> ·
   <a href="#install">Install</a> ·
   <a href="#formula-maintenance">Formula maintenance</a> ·
   <a href="#contributing">Contributing</a> ·
@@ -28,10 +29,29 @@ which installs and updates agent skills and instructions, resolved to exact
 versions. Formulae track the upstream CLI releases; the tap has no independent
 version or release tags.
 
+## Quick look
+
+```sh
+brew tap agents-tools/tap
+brew install agents-tools/tap/agents
+agents --version
+```
+
 ## Install
 
-There is no formula yet. The first agents release adds `Formula/agents.rb`.
-Until then, [build agents from source](https://github.com/agents-tools/cli#install).
+The Quick look installs the stable release selected by
+[Formula/agents.rb](Formula/agents.rb)'s archive URL and SHA-256. Homebrew,
+macOS 13 (Ventura) or later, and Xcode with a Swift toolchain compatible with
+the selected source are required to build it.
+
+For a development build from the upstream `master` branch, use the HEAD
+channel:
+
+```sh
+brew install --HEAD agents-tools/tap/agents
+```
+
+Both channels build the public [source repository](https://github.com/agents-tools/cli).
 
 ## Formula maintenance
 

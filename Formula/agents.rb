@@ -1,8 +1,8 @@
 class Agents < Formula
   desc "Install and update agent skills and instructions, resolved to exact versions"
   homepage "https://agents-tools.github.io/"
-  url "https://github.com/agents-tools/cli/archive/refs/tags/0.1.0.tar.gz"
-  sha256 "ac9bc571cc1a7b8e4138e5da1d9ecb9f6f6dfcd5f846d3d9826a12aad4e72f73"
+  url "https://github.com/agents-tools/cli/archive/refs/tags/0.1.1.tar.gz"
+  sha256 "7335af2747d4fede8dde6289b4ce0abde237dd5805899e6f1fe4bfa577751f12"
   license "MIT"
   head "https://github.com/agents-tools/cli.git", branch: "master"
 

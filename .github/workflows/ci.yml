@@ -43,3 +43,6 @@ jobs:
           fi
       - name: Diff check
         run: git diff --check
+
+  presentation:
+    uses: agents-tools/.github/.github/workflows/presentation.yml@c748c42410ded7d6419b92b2603e7882e6087311

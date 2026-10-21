@@ -12,7 +12,7 @@ and inherited [contributing guide](https://github.com/agents-tools/.github/blob/
   installation and tests for changed formulae. An empty `Formula/` inventory
   must succeed with a notice.
 - For workflow edits, read the shared
-  [integration guide](https://github.com/agents-tools/.github/blob/master/Documentation/Reference/WorkflowIntegration.md),
+  [integration guide](https://github.com/agents-tools/.github/blob/master/docs/reference/workflow-integration.md),
   run `actionlint`, and retain the required contexts `policy / policy` and
   `homebrew` from the organization
   [maintenance declaration](https://github.com/agents-tools/.github/blob/master/MAINTENANCE.md#activation-and-required-checks).

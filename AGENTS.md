@@ -18,3 +18,7 @@ and inherited [contributing guide](https://github.com/agents-tools/.github/blob/
   [maintenance declaration](https://github.com/agents-tools/.github/blob/master/MAINTENANCE.md#activation-and-required-checks).
   Confirm those exact contexts on the candidate's real CI runs.
 - Run `git diff --check origin/master` before handing off any change.
+- Check the committed social preview with the `agents-tools/.github` standard
+  pinned by `presentation` in CI; the README owns its local render/check loop.
+  Keep caller ID `presentation` without inputs or dependencies. Its required
+  context is activated only after a passing real PR run.

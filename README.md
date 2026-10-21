@@ -110,12 +110,12 @@ temporary files outside this checkout. Then run:
 
 ```sh
 node "$toolchain_dir/src/cli.ts" social-preview render \
-  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/Brand/Fonts" \
+  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/.github/design/fonts" \
   --catalog "$standard_dir/profile/catalog.json" --repository homebrew-tap \
   --icon "$standard_dir/profile/assets/icon.png" \
   --out .github/assets/social-preview/social-preview.png
 node "$toolchain_dir/src/cli.ts" social-preview check \
-  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/Brand/Fonts" \
+  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/.github/design/fonts" \
   --catalog "$standard_dir/profile/catalog.json" --repository homebrew-tap \
   --icon "$standard_dir/profile/assets/icon.png" --assets .github/assets/social-preview
 ```
@@ -124,7 +124,7 @@ On drift, CI uploads artifact `presentation` containing `presentation.tar`.
 Extract it with `tar -xf presentation.tar -C .github/assets`, review and commit
 the PNG.
 
-[toolchain]: https://github.com/showxu/skills/blob/e5a50c34bf66264a436288f96e44db9caa305912/skills/github-readme-design/references/renderers.md#local-regeneration
+[toolchain]: https://github.com/showxu/skills/blob/9e5d7268232b78f5fbef21ccfb9e3a079f2ef7e3/skills/github-readme-design/references/renderers.md#local-regeneration
 
 ## Contributing
 

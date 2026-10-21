@@ -45,4 +45,4 @@ jobs:
         run: git diff --check
 
   presentation:
-    uses: agents-tools/.github/.github/workflows/presentation.yml@c748c42410ded7d6419b92b2603e7882e6087311
+    uses: agents-tools/.github/.github/workflows/presentation.yml@d88103a9a576c9cfe9561a5d58c803255fea72f4 # v0.1.0

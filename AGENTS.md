@@ -12,13 +12,11 @@ and inherited [contributing guide](https://github.com/agents-tools/.github/blob/
   installation and tests for changed formulae. An empty `Formula/` inventory
   must succeed with a notice.
 - For workflow edits, read the shared
-  [integration guide](https://github.com/agents-tools/.github/blob/master/docs/reference/workflow-integration.md),
-  run `actionlint`, and retain the required contexts `policy / policy` and
-  `homebrew` from the organization
-  [maintenance declaration](https://github.com/agents-tools/.github/blob/master/MAINTENANCE.md#activation-and-required-checks).
-  Confirm those exact contexts on the candidate's real CI runs.
-- Run `git diff --check origin/master` before handing off any change.
-- Check the committed social preview with the `agents-tools/.github` standard
-  pinned by `presentation` in CI; the README owns its local render/check loop.
-  Keep caller ID `presentation` without inputs or dependencies. Its required
-  context is activated only after a passing real PR run.
+  [workflow guide](https://github.com/agents-tools/github-workflows#calling-homebrew-validation),
+  run `actionlint` on every workflow, and retain the required contexts
+  `policy / policy` and `homebrew / homebrew`. Confirm those exact contexts on
+  the candidate's real CI runs before required-check activation.
+- Render and check the committed social preview locally with the
+  [github-readme-design toolchain](https://github.com/showxu/skills/blob/master/skills/github-readme-design/references/renderers.md)
+  and the `agents-tools/.github` standard inputs. Follow the README's local
+  validation instructions and commit reviewed assets.

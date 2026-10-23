@@ -62,69 +62,42 @@ source URL, checksum, dependencies and test block as needed. Include the selecte
 release, digest and validation results in the pull request, as required by the
 [family versioning standard](https://github.com/agents-tools/.github/blob/master/VERSIONING.md).
 
-Use a fresh macOS environment with Homebrew. From a committed task worktree,
-tap that checkout and validate every `Formula/*.rb`:
+Use a fresh macOS environment with Homebrew and an unregistered
+`agents-tools/tap` namespace. From a committed task worktree, run the
+[shared Homebrew validation commands](https://github.com/agents-tools/github-workflows#local-validation)
+using a checkout of the shared workflow repository at the accepted CI revision:
 
 ```sh
-brew tap --custom-remote agents-tools/tap "$PWD"
-bash Scripts/check
+bash /path/to/github-workflows/scripts/check-homebrew agents-tools/tap
+# Also source-install and test changed formulae:
+bash /path/to/github-workflows/scripts/check-homebrew agents-tools/tap origin/master HEAD
 ```
 
-`Scripts/check` runs `brew style` and `brew audit --strict` for every formula.
-To also install changed formulae from source and run `brew test`, pass the
-comparison base and head:
+The shared script temporarily registers this checkout as the tap and removes
+that registration on exit. It runs `brew style` and `brew audit --strict` for
+every `Formula/*.rb`. With base and head revisions, it also runs
+`brew install --build-from-source` and `brew test` for changed formulae that
+still exist. Source installation modifies the local Homebrew installation.
+With no formulae, validation succeeds with a notice.
 
-```sh
-bash Scripts/check origin/master HEAD
-```
-
-With no formulae, the check succeeds with a notice. On pull requests, CI uses
-the PR base and head to select changed formulae and validates the checkout's
-test merge commit. Deleted formulae are not installed.
-
-The required contexts are `policy / policy` and `homebrew`. Source policy calls
-the pinned family workflow; `homebrew` runs the checks above on macOS. Both
+On pull requests, CI uses the PR base and head to select changed formulae and
+validates the checkout's test merge commit. Deleted formulae are not installed.
+The required contexts are `policy / policy` and `homebrew / homebrew`, supplied
+by the pinned reusable workflows in `agents-tools/github-workflows`. Both
 workflows run on branch pushes and pull requests. Title edits rerun only source
 policy. Both workflows also support manual dispatch.
 
-For workflow changes, run these checks as well:
-
-```sh
-actionlint
-git diff --check origin/master
-```
+For workflow changes, run `actionlint` on every workflow.
 
 ## Social preview
 
-CI also calls `agents-tools/.github`'s presentation workflow from job
-`presentation`, with no inputs or dependencies. It compares the committed
-[social preview](.github/assets/social-preview/social-preview.png) with a fresh
-render from that standard's DESIGN, fonts and catalog at its workflow pin. The
-icon is the catalog's light-page image, resolved to the standard's
-`profile/assets/icon.png`. The context is `presentation / presentation`; its
-required-check activation follows a passing real PR run.
-
-For local regeneration, prepare the pinned [toolchain package][toolchain] and
-the standard inputs at the CI pin as `toolchain_dir` and `standard_dir`. Keep
-temporary files outside this checkout. Then run:
-
-```sh
-node "$toolchain_dir/src/cli.ts" social-preview render \
-  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/.github/design/fonts" \
-  --catalog "$standard_dir/profile/catalog.json" --repository homebrew-tap \
-  --icon "$standard_dir/profile/assets/icon.png" \
-  --out .github/assets/social-preview/social-preview.png
-node "$toolchain_dir/src/cli.ts" social-preview check \
-  --design "$standard_dir/DESIGN.md" --fonts "$standard_dir/.github/design/fonts" \
-  --catalog "$standard_dir/profile/catalog.json" --repository homebrew-tap \
-  --icon "$standard_dir/profile/assets/icon.png" --assets .github/assets/social-preview
-```
-
-On drift, CI uploads artifact `presentation` containing `presentation.tar`.
-Extract it with `tar -xf presentation.tar -C .github/assets`, review and commit
-the PNG.
-
-[toolchain]: https://github.com/showxu/skills/blob/9e5d7268232b78f5fbef21ccfb9e3a079f2ef7e3/skills/github-readme-design/references/renderers.md#local-regeneration
+Render and check the committed
+[social preview](.github/assets/social-preview/social-preview.png) locally with
+the [github-readme-design toolchain](https://github.com/showxu/skills/blob/master/skills/github-readme-design/references/renderers.md).
+Use the `agents-tools/.github` standard's `DESIGN.md`, `.github/design/fonts`,
+`profile/catalog.json` and light-page icon at `profile/assets/icon.png`, with
+repository selector `homebrew-tap`. Follow the toolchain's documented render
+and check commands, review the generated PNG and commit it.
 
 ## Contributing
 

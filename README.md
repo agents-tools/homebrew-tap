@@ -41,8 +41,8 @@ agents --version
 
 The Quick look installs the stable release selected by
 [Formula/agents.rb](Formula/agents.rb)'s archive URL and SHA-256. Homebrew,
-macOS 13 (Ventura) or later, and Xcode with a Swift toolchain compatible with
-the selected source are required to build it.
+macOS 15 (Sequoia) or later, and Xcode 26.4 or later (Swift 6.3) are required.
+Building from source also requires a macOS version supported by that Xcode release.
 
 For a development build from the upstream `master` branch, use the HEAD
 channel:
